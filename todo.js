@@ -2,6 +2,19 @@ let taskInput=document.querySelector("#taskInput");
 let addBtn=document.querySelector("#addBtn");
 let taskList=document.querySelector("#taskList");
 
+let tasks=JSON.parse(localStorage.getItem("myTasks")) || [];
+
+function renderTasks(){
+taskList.innerHTML="";
+
+for(let i=0; i< tasks.length; i++){
+    let newListItem=document.createElement("li");
+    newListItem.textContent=tasks[i];
+    taskList.appendChild(newListItem);
+}
+}
+renderTasks();
+
 addBtn.addEventListener("click", function(){
     let taskText=taskInput.value;
 
@@ -9,12 +22,13 @@ addBtn.addEventListener("click", function(){
         alert("please enter a task first!");
         return;
     }
+    tasks.push(taskText);
 
-    let newListItem=document.createElement("li");
+    localStorage.setItem("myTasks", JSON.stringify(tasks));
 
-    newListItem.textContent=taskText;
-
-    taskList.appendChild(newListItem);
+    renderTasks();
 
     taskInput.value="";
-})
+
+    
+});
