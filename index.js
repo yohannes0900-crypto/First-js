@@ -94,5 +94,18 @@ resetBtn.addEventListener("click", function(){
     countDisplay.textContent=count;
 });
 
+let themeBtn=document.querySelector("#themeBtn");
+let bodyElement=document.body;
+
+themeBtn.addEventListener("click", function(){
+    bodyElement.classList.toggle("dark-mode");
+    
+    if (bodyElement.classList.contains("dark-mode")){
+        themeBtn.textContent="☀️ Toggle Light Mode";
+    } else {
+        themeBtn.textContent="🌙 Toggle Dark Mode";
+    }
+});
+
 
 
