@@ -9,11 +9,26 @@ taskList.innerHTML="";
 
 for(let i=0; i< tasks.length; i++){
     let newListItem=document.createElement("li");
-    newListItem.textContent=tasks[i];
-    taskList.appendChild(newListItem);
+    newListItem.textContent=tasks[i] + " ";
+    // taskList.appendChild(newListItem);
+
+    let deleteBtn=document.createElement("button");
+    deleteBtn.textContent="❌";
+
+    deleteBtn.addEventListener("click", function(){
+        tasks.splice(i, 1);
+
+        localStorage.setItem("myTasks", JSON.stringify(tasks));
+ renderTasks();
+    });
+        newListItem.appendChild(deleteBtn);
+        taskList.appendChild(newListItem);   
+
 }
 }
 renderTasks();
+
+
 
 addBtn.addEventListener("click", function(){
     let taskText=taskInput.value;
